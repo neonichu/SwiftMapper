@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABD0591B19683A7300C5935D /* SwiftMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0591A19683A7300C5935D /* SwiftMapper.swift */; };
 		D445D2D71968374300D216EB /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D445D2D61968374300D216EB /* SampleData.swift */; };
 		D4B4793819683659009C9AD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4793719683659009C9AD7 /* AppDelegate.swift */; };
 		D4B4793A19683659009C9AD7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B4793919683659009C9AD7 /* Images.xcassets */; };
@@ -24,6 +25,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ABD0591A19683A7300C5935D /* SwiftMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMapper.swift; sourceTree = SOURCE_ROOT; };
+		ABD0591C19683CB500C5935D /* TestPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TestPlayground.playground; sourceTree = "<group>"; };
 		D445D2D61968374300D216EB /* SampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		D4B4793219683659009C9AD7 /* SwiftMapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftMapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B4793619683659009C9AD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,10 +76,12 @@
 		D4B4793419683659009C9AD7 /* SwiftMapper */ = {
 			isa = PBXGroup;
 			children = (
+				ABD0591A19683A7300C5935D /* SwiftMapper.swift */,
 				D4B4793719683659009C9AD7 /* AppDelegate.swift */,
 				D4B4793919683659009C9AD7 /* Images.xcassets */,
 				D4B4793519683659009C9AD7 /* Supporting Files */,
 				D445D2D61968374300D216EB /* SampleData.swift */,
+				ABD0591C19683CB500C5935D /* TestPlayground.playground */,
 			);
 			path = SwiftMapper;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4B4793819683659009C9AD7 /* AppDelegate.swift in Sources */,
+				ABD0591B19683A7300C5935D /* SwiftMapper.swift in Sources */,
 				D445D2D71968374300D216EB /* SampleData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
