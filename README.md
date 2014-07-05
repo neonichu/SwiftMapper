@@ -1,4 +1,4 @@
-JSONSwiftMapper
+SwiftMapper
 ===============
 
-JSON mapper writter in Swift
+JSON mapper written in Swift
