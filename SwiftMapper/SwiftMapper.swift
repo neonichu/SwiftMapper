@@ -61,11 +61,12 @@ class SwiftMapperDescriptor <T> {
         mappings[attribute] = mapping
     }
     
-    func parse(json : Dictionary<String, Param>, obj : T) {
+    func parse(json : Dictionary<String, Param>, to obj : T) -> T {
         for (attribute, value) in json {
             if let m = mappings[attribute] {
                 m(obj, value)
             }
         }
+        return obj
     }
 }

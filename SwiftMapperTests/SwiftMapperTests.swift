@@ -45,8 +45,13 @@ class SwiftMapperTests: XCTestCase {
             "smoker" : BoolParam(bool: true)
         ]
 
-        let parsedUser = descriptor.parse(userJSON, obj: User())
+        let parsedUser = descriptor.parse(userJSON, to: User())
         
-        XCAssertEquals("", parsedUser.description())
+        XCTAssertEqual("John Doe", parsedUser.username! as String, "Username should be the same")
+        XCTAssertEqual("user8723", parsedUser.identifier!, "Identifier should be the same")
+        XCTAssertEqual("http://imgur.com/photo1.png", parsedUser.photo!, "photo URL should be the same")
+        XCTAssertEqual(27, parsedUser.age!, "Age should be the same")
+        XCTAssertTrue(parsedUser.smoker!, "Should be smoking (but it is unhealthy)")
+        XCTAssertEqual("User John Doe (id:user8723) aged 27 photo \"http://imgur.com/photo1.png\" smoking", parsedUser.description, "Description should be correct")
     }
 }
