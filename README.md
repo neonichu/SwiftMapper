@@ -66,6 +66,8 @@ What is missing?
 ----------------
 * arrays, dictionaries
 * nested types
+* error checking
+* validation
 * refactoring and finishing touches
 
 We need help!
