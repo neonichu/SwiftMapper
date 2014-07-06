@@ -36,7 +36,7 @@ Your JSON string:
 }
 ```
 
-You need to create entity mepping descriptor in format
+You need to create entity mapping descriptor in format
 ```
 descriptor["jsonAttribute"] = { $0.property = $1.asFormat }
 ```
