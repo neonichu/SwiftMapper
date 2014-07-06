@@ -36,7 +36,7 @@ class SwiftMapperTests: XCTestCase {
         descriptor["smoker"] = { $0.smoker = $1.asBool }
     }
     
-    func testExample() {
+    func equalityTest() {
         let userJSONString = "{\"username\":\"John Doe\",\"identifier\":\"user8723\",\"photo\":\"http://imgur.com/photo1.png\",\"age\":27,\"smoker\":true}"
 
         let parsedUser = descriptor.parse(userJSONString, to: User())
