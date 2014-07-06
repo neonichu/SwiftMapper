@@ -29,11 +29,11 @@ class SwiftMapperTests: XCTestCase {
         super.setUp()
         descriptor = SwiftMapperDescriptor<User>()
         
-        descriptor.add("username", { $0.username = $1.asString })
-        descriptor.add("identifier", { $0.identifier = $1.asString })
-        descriptor.add("photo", { $0.photo = $1.asString })
-        descriptor.add("age", { $0.age = $1.asInt })
-        descriptor.add("smoker", { $0.smoker = $1.asBool })
+        descriptor["username"] = { $0.username = $1.asString }
+        descriptor["identifier"] = { $0.identifier = $1.asString }
+        descriptor["photo"] = { $0.photo = $1.asString }
+        descriptor["age"] = { $0.age = $1.asInt }
+        descriptor["smoker"] = { $0.smoker = $1.asBool }
     }
     
     func testExample() {

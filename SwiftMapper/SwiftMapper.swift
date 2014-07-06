@@ -57,8 +57,13 @@ class SwiftMapperDescriptor <T> {
     
     var mappings : Dictionary<String, (T, Param) -> ()> = [:]
     
-    func add(attribute : String, mapping : (T, Param) -> ()) {
-        mappings[attribute] = mapping
+    subscript(attribute : String) -> ((T, Param) -> ())? {
+        get {
+            return mappings[attribute]
+        }
+        set {
+            mappings[attribute] = newValue
+        }
     }
     
     func parse(json : String, to obj : T) -> T {
