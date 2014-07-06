@@ -1,7 +1,7 @@
 SwiftMapper
 ===============
 
-JSON mapper written in Swift during [Swift Crunch](http://swiftcrunch.com/) in Cracow on July 6th 2014 just for fun!
+JSON mapper written in Swift during [Swift Crunch 2014](http://swiftcrunch.com/) in Cracow on July 5th & 6th 2014 just for fun!
 
 Authors
 -------
