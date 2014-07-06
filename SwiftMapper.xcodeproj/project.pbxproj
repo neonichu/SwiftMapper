@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D41D57E419694499003F1F58 /* SwiftMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4419A2A196862AE000CB43E /* SwiftMapper.swift */; };
 		D4419A131968622C000CB43E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4419A121968622C000CB43E /* AppDelegate.swift */; };
 		D4419A151968622C000CB43E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4419A141968622C000CB43E /* Images.xcassets */; };
 		D4419A211968622C000CB43E /* SwiftMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4419A201968622C000CB43E /* SwiftMapperTests.swift */; };
@@ -212,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41D57E419694499003F1F58 /* SwiftMapper.swift in Sources */,
 				D4419A211968622C000CB43E /* SwiftMapperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,6 +383,7 @@
 				D4419A261968622C000CB43E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D4419A271968622C000CB43E /* Build configuration list for PBXNativeTarget "SwiftMapperTests" */ = {
 			isa = XCConfigurationList;
@@ -389,6 +392,7 @@
 				D4419A291968622C000CB43E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

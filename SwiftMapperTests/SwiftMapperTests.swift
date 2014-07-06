@@ -8,28 +8,45 @@
 
 import XCTest
 
-class SwiftMapperTests: XCTestCase {
+class User
+{
+    var identifier : String?
+    var username : String?
+    var photo : String?
+    var age : Int?
+    var smoker : Bool?
     
+    var description : String {
+    return "User \(username) (id:\(identifier)) aged \(age) photo \"\(photo)\"" + (smoker ? " smoking" : "")
+    }
+}
+
+class SwiftMapperTests: XCTestCase {
+
+    var descriptor : SwiftMapperDescriptor<User>!
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+        descriptor = SwiftMapperDescriptor<User>()
+        
+        descriptor.add("username", { $0.username = $1.asString })
+        descriptor.add("identifier", { $0.identifier = $1.asString })
+        descriptor.add("photo", { $0.photo = $1.asString })
+        descriptor.add("age", { $0.age = $1.asInt })
+        descriptor.add("smoker", { $0.smoker = $1.asBool })
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        let userJSON : Dictionary<String, Param> = [
+            "username" : StringParam(string: "John Doe"),
+            "identifier" : StringParam(string: "user8723"),
+            "photo" : StringParam(string: "http://imgur.com/photo1.png"),
+            "age" : IntParam(int: 27),
+            "smoker" : BoolParam(bool: true)
+        ]
+
+        let parsedUser = descriptor.parse(userJSON, obj: User())
+        
+        XCAssertEquals("", parsedUser.description())
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }

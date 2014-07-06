@@ -8,37 +8,6 @@
 
 import Foundation
 
-class User
-{
-    var identifier : String?
-    var username : String?
-    var photo : String?
-    var age : Int?
-    var smoker : Bool?
-    
-    var description : String {
-        return "User \(username) (id:\(identifier)) aged \(age) photo \"\(photo)\"" + (smoker ? " smoking" : "")
-    }
-}
-
-let userJSON = [
-    "username" : "John Doe",
-    "identifier" : "user8723",
-    "photo" : "http://imgur.com/photo1.png",
-    "age" : 27,
-    "smoker" : true
-]
-
-//class SwiftMapper {
-//    
-//    func parse<T>(json : Dictionary, toObject: T) {
-//        
-//    }
-//    
-//    
-//    
-//}
-
 protocol Param {
     var asString : String { get }
     var asInt : Int { get }
@@ -46,8 +15,8 @@ protocol Param {
 }
 
 class BoolParam : Param {
-    init(arg : Bool) {
-        asBool = arg
+    init(bool : Bool) {
+        asBool = bool
     }
     var asBool : Bool
     var asString : String {
@@ -59,8 +28,8 @@ class BoolParam : Param {
 }
 
 class IntParam : Param {
-    init(arg : Int) {
-        asInt = arg
+    init(int : Int) {
+        asInt = int
     }
     var asInt : Int
     var asString : String {
@@ -72,8 +41,8 @@ class IntParam : Param {
 }
 
 class StringParam : Param {
-    init(arg : String) {
-        asString = arg
+    init(string : String) {
+        asString = string
     }
     var asString : String
     var asInt : Int {
@@ -92,24 +61,11 @@ class SwiftMapperDescriptor <T> {
         mappings[attribute] = mapping
     }
     
-    func parse(json : Dictionary<String, Any>) {
+    func parse(json : Dictionary<String, Param>, obj : T) {
         for (attribute, value) in json {
-            
+            if let m = mappings[attribute] {
+                m(obj, value)
+            }
         }
-    }
-}
-
-class Test {
-    func test() {
-
-        let descriptor = SwiftMapperDescriptor<User>()
-        
-        descriptor.add("username", { $0.username = $1.asString })
-        descriptor.add("identifier", { $0.identifier = $1.asString })
-        descriptor.add("photo", { $0.photo = $1.asString })
-        descriptor.add("age", { $0.age = $1.asInt })
-        descriptor.add("smoker", { $0.smoker = $1.asBool })
-
-        
     }
 }
