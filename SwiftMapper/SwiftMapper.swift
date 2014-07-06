@@ -61,12 +61,32 @@ class SwiftMapperDescriptor <T> {
         mappings[attribute] = mapping
     }
     
-    func parse(json : Dictionary<String, Param>, to obj : T) -> T {
-        for (attribute, value) in json {
+    func parse(json : String, to obj : T) -> T {
+        let jsonDict : Dictionary<String, Param> = asDictionary(json)
+        for (attribute, value) in jsonDict {
             if let m = mappings[attribute] {
                 m(obj, value)
             }
         }
         return obj
+    }
+    
+    func asDictionary(json : String) -> Dictionary<String, Param> {
+        let data : NSData = (json as NSString).dataUsingEncoding(NSUTF8StringEncoding)
+        var error : NSError?
+        let jsonObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
+        var result : Dictionary<String, Param> = [:]
+        for (key,value) in jsonObject {
+            let stringKey = key as String
+            if let stringValue = value as? String {
+                result[stringKey] = StringParam(string:stringValue)
+            } else if let intValue = value as? Int {
+                result[stringKey] = IntParam(int:intValue)
+            } else if let boolValue = value as? Bool {
+                result[stringKey] = BoolParam(bool:boolValue)
+            }
+
+        }
+        return result
     }
 }

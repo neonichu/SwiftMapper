@@ -37,15 +37,9 @@ class SwiftMapperTests: XCTestCase {
     }
     
     func testExample() {
-        let userJSON : Dictionary<String, Param> = [
-            "username" : StringParam(string: "John Doe"),
-            "identifier" : StringParam(string: "user8723"),
-            "photo" : StringParam(string: "http://imgur.com/photo1.png"),
-            "age" : IntParam(int: 27),
-            "smoker" : BoolParam(bool: true)
-        ]
+        let userJSONString = "{\"username\":\"John Doe\",\"identifier\":\"user8723\",\"photo\":\"http://imgur.com/photo1.png\",\"age\":27,\"smoker\":true}"
 
-        let parsedUser = descriptor.parse(userJSON, to: User())
+        let parsedUser = descriptor.parse(userJSONString, to: User())
         
         XCTAssertEqual("John Doe", parsedUser.username! as String, "Username should be the same")
         XCTAssertEqual("user8723", parsedUser.identifier!, "Identifier should be the same")
