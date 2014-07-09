@@ -15,6 +15,8 @@ class User
     var photo : String?
     var age : Int?
     var smoker : Bool?
+    var arr: [AnyObject]?
+    var dict: [String:AnyObject]?
     
     var description : String {
     return "User \(username) (id:\(identifier)) aged \(age) photo \"\(photo)\"" + (smoker ? " smoking" : "")
@@ -29,23 +31,25 @@ class SwiftMapperTests: XCTestCase {
         super.setUp()
         descriptor = SwiftMapperDescriptor<User>()
         
-        descriptor["username"] = { $0.username = $1.asString }
-        descriptor["identifier"] = { $0.identifier = $1.asString }
-        descriptor["photo"] = { $0.photo = $1.asString }
-        descriptor["age"] = { $0.age = $1.asInt }
-        descriptor["smoker"] = { $0.smoker = $1.asBool }
+        descriptor["username"] = { $0.username = $1 as? String }
+        descriptor["identifier"] = { $0.identifier = $1 as? String }
+        descriptor["photo"] = { $0.photo = $1 as? String }
+        descriptor["age"] = { $0.age = $1 as? Int }
+        descriptor["smoker"] = { $0.smoker = $1 as? Bool }
+        descriptor["arr"] = { $0.arr = $1 as? [String] }
+        descriptor["dict"] = { $0.dict = $1 as? [String:String] }
     }
     
-    func equalityTest() {
+    func test() {
         let userJSONString = "{\"username\":\"John Doe\",\"identifier\":\"user8723\",\"photo\":\"http://imgur.com/photo1.png\",\"age\":27,\"smoker\":true}"
-
+        
         let parsedUser = descriptor.parse(userJSONString, to: User())
         
-        XCTAssertEqual("John Doe", parsedUser.username! as String, "Username should be the same")
-        XCTAssertEqual("user8723", parsedUser.identifier!, "Identifier should be the same")
-        XCTAssertEqual("http://imgur.com/photo1.png", parsedUser.photo!, "photo URL should be the same")
+        XCTAssertEqual("John Doe", parsedUser.username as String, "Username should be the same")
+        XCTAssertEqual("user8723", parsedUser.identifier as String, "Identifier should be the same")
+        XCTAssertEqual("http://imgur.com/photo1.png", parsedUser.photo as String, "photo URL should be the same")
         XCTAssertEqual(27, parsedUser.age!, "Age should be the same")
-        XCTAssertTrue(parsedUser.smoker!, "Should be smoking (but it is unhealthy)")
+        XCTAssertEqual(true, parsedUser.smoker as Bool, "Should be smoking (but it is unhealthy)")
         XCTAssertEqual("User John Doe (id:user8723) aged 27 photo \"http://imgur.com/photo1.png\" smoking", parsedUser.description, "Description should be correct")
     }
 }

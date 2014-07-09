@@ -15,6 +15,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		ABBF141A196D810F00872D70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4419A051968622C000CB43E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4419A0C1968622C000CB43E;
+			remoteInfo = SwiftMapper;
+		};
 		D4419A1B1968622C000CB43E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D4419A051968622C000CB43E /* Project object */;
@@ -139,6 +146,7 @@
 			);
 			dependencies = (
 				D4419A1C1968622C000CB43E /* PBXTargetDependency */,
+				ABBF141B196D810F00872D70 /* PBXTargetDependency */,
 			);
 			name = SwiftMapperTests;
 			productName = SwiftMapperTests;
@@ -221,6 +229,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		ABBF141B196D810F00872D70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4419A0C1968622C000CB43E /* SwiftMapper */;
+			targetProxy = ABBF141A196D810F00872D70 /* PBXContainerItemProxy */;
+		};
 		D4419A1C1968622C000CB43E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D4419A0C1968622C000CB43E /* SwiftMapper */;
