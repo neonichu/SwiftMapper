@@ -26,7 +26,7 @@ class SwiftMapperTests: XCTestCase {
     
     func testBasicParsing() {
         let mapper = Mapper<User>()
-        mapper.map({ (field, object) in
+        mapper.map { (field, object) in
             field["username"] => object.username
             field["identifier"] => object.identifier
             field["photo"] => object.photo
@@ -34,7 +34,7 @@ class SwiftMapperTests: XCTestCase {
             field["smoker"] => object.smoker
             field["arr"] => object.arr
             field["dict"] => object.dict
-        })
+        }
         
         let testUsername = "John Doe"
         let testIdentifier = "user8723"
@@ -65,9 +65,9 @@ class SwiftMapperTests: XCTestCase {
     func testIntValidation() {
         
         let mapper = Mapper<User>()
-        mapper.map({ (field, object) in
+        mapper.map { (field, object) in
             field.min(30).max(40)["age"] => object.age
-        })
+        }
         
         let testAgeFailing = 27
         let testAgePassing = 30
@@ -85,6 +85,8 @@ class SwiftMapperTests: XCTestCase {
 
         let parsedUserAlsoFailing = mapper.parse(userJSONStringAlsoFailing, to: User())
         XCTAssertNil(parsedUserAlsoFailing.age, "Age should not pass validation")
+        
+        
     }
 
 }

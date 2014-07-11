@@ -74,14 +74,19 @@ let parsedUser = mapper.parse(jsonString, to: User())
 Validation
 ------------
 
-We can validate the fields while mapping - if the condition is not satisfied, the value will be set to nil.
+We can validate the fields while mapping. 
+
+If the condition is not satisfied and we're mapping at optional property, the value will be set to nil.
+
+If the condition is not satisfied and we're mapping at non-optional property, the value will not be changed at all.
+
 ```
 mapper.map { (field, user) in
     field.min(18).max(200)["age"] => user.age
 }
 ```
 
-For now, very limited validation is supported - only min and max for optional Int fields.
+For now, very limited validation is supported - only min and max for Int properties.
 
 
 What do we support?
