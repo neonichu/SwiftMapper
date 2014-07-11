@@ -55,7 +55,7 @@ Descriptor mapping for User entity
 ```swift
 let mapper = Mapper<User>()
         
-mapper.map({ (field, object) in
+mapper.map { (field, object) in
     field["username"] => object.username
     field["identifier"] => object.identifier
     field["photo"] => object.photo
@@ -63,7 +63,7 @@ mapper.map({ (field, object) in
     field["smoker"] => object.smoker
     field["arr"] => object.arr
     field["dict"] => object.dict
-})
+}
 ```
 
 And now we invoke magic :)
@@ -85,5 +85,5 @@ What is missing?
 
 We need help!
 -------------
-Does anyone know how to avoid this ugly closure syntax and specify only properties?
+Does anyone know how to inject the values into class with immutable properties? Parsing in constructor doesn't help.
 
