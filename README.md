@@ -71,16 +71,30 @@ And now we invoke magic :)
 let parsedUser = mapper.parse(jsonString, to: User())
 ```
 
+Validation
+------------
+
+We can validate the fields while mapping - if the condition is not satisfied, the value will be set to nil.
+```
+mapper.map { (field, user) in
+    field.min(18).max(200)["age"] => user.age
+}
+```
+
+For now, very limited validation is supported - only min and max for optional Int fields.
+
+
 What do we support?
 -------------------
 * parsing objects
 * string, integer, boolean, arrays and dictionaries json values
+* vary limited validation
 
 What is missing?
 ----------------
+* full validation
 * nested types
 * error checking
-* validation
 * refactoring and finishing touches
 
 We need help!
