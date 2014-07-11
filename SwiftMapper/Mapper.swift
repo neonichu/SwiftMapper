@@ -11,21 +11,14 @@ import Foundation
 class Mapper<T> {
     
     var mappings: [(Mapper, T) -> ()] = []
-    var validations: [String:String] = [:]
+    var validations: [String:[Validator]] = [:]
     var json: [String:AnyObject] = [:]
-    var tmpVal = ""
-    
-    var required: Mapper<T> {
-    get {
-        tmpVal += "required "
-        return self
-    }
-    }
+    var tmpVal: [Validator] = []
     
     subscript(index: String) -> (Mapper, String) {
         get {
             validations[index] = tmpVal
-            tmpVal = ""
+            tmpVal = []
             return (self, index)
         }
         set {}
@@ -58,7 +51,12 @@ class Mapper<T> {
     }
     
     func min(min: Int) -> Mapper {
-        tmpVal += "min"
+        tmpVal.append(MinIntValidator(min: min))
+        return self
+    }
+    
+    func max(max: Int) -> Mapper {
+        tmpVal.append(MaxIntValidator(max: max))
         return self
     }
     

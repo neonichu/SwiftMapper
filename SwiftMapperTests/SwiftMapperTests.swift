@@ -12,7 +12,7 @@ class User {
     var username : String = ""
     var identifier : String?
     var photo : String = ""
-    var age : Int = 0
+    var age : Int?
     var smoker : Bool = false
     var arr: [AnyObject]?
     var dict: [String:AnyObject]?
@@ -24,12 +24,8 @@ class User {
 
 class SwiftMapperTests: XCTestCase {
     
-    var mapper : Mapper<User>!
-    
-    override func setUp() {
-        super.setUp()
-        mapper = Mapper<User>()
-        
+    func testBasicParsing() {
+        let mapper = Mapper<User>()
         mapper.map({ (field, object) in
             field["username"] => object.username
             field["identifier"] => object.identifier
@@ -40,9 +36,6 @@ class SwiftMapperTests: XCTestCase {
             field["dict"] => object.dict
         })
         
-    }
-    
-    func test() {
         let testUsername = "John Doe"
         let testIdentifier = "user8723"
         let testPhoto = "http://imgur.com/photo1.png"
@@ -68,4 +61,30 @@ class SwiftMapperTests: XCTestCase {
         XCTAssertEqualObjects(testArray, parsedUser.arr, "Array should be the same")
         XCTAssertEqualObjects(testDirectory, parsedUser.dict, "Dictionary should be the same")
     }
+    
+    func testIntValidation() {
+        
+        let mapper = Mapper<User>()
+        mapper.map({ (field, object) in
+            field.min(30).max(40)["age"] => object.age
+        })
+        
+        let testAgeFailing = 27
+        let testAgePassing = 30
+        let testAgeAlsoFailing = 42
+        
+        let userJSONStringFailing = "{\"age\":\(testAgeFailing)}"
+        let userJSONStringPassing = "{\"age\":\(testAgePassing)}"
+        let userJSONStringAlsoFailing = "{\"age\":\(testAgeAlsoFailing)}"
+        
+        let parsedUserFailing = mapper.parse(userJSONStringFailing, to: User())
+        XCTAssertNil(parsedUserFailing.age, "Age should not pass validation")
+        
+        let parsedUserPassing = mapper.parse(userJSONStringPassing, to: User())
+        XCTAssertEqualObjects(testAgePassing, parsedUserPassing.age, "Age should validation")
+
+        let parsedUserAlsoFailing = mapper.parse(userJSONStringAlsoFailing, to: User())
+        XCTAssertNil(parsedUserAlsoFailing.age, "Age should not pass validation")
+    }
+
 }

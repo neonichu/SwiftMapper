@@ -15,6 +15,8 @@
 		CE8937C1197071CC00376258 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8937BC197071CC00376258 /* Operators.swift */; };
 		CE8937C2197071CC00376258 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8937BD197071CC00376258 /* Parser.swift */; };
 		CE8937C3197071CC00376258 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8937BD197071CC00376258 /* Parser.swift */; };
+		CE8937C519707A8B00376258 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8937C419707A8B00376258 /* Validators.swift */; };
+		CE8937C619707A8B00376258 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8937C419707A8B00376258 /* Validators.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,7 @@
 		CE8937BB197071CC00376258 /* Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		CE8937BC197071CC00376258 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		CE8937BD197071CC00376258 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		CE8937C419707A8B00376258 /* Validators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 				CE8937BB197071CC00376258 /* Mapper.swift */,
 				CE8937BC197071CC00376258 /* Operators.swift */,
 				CE8937BD197071CC00376258 /* Parser.swift */,
+				CE8937C419707A8B00376258 /* Validators.swift */,
 				CE56C3111970618900FD0EDA /* Supporting Files */,
 			);
 			path = SwiftMapper;
@@ -218,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8937C519707A8B00376258 /* Validators.swift in Sources */,
 				CE8937BE197071CC00376258 /* Mapper.swift in Sources */,
 				CE8937C0197071CC00376258 /* Operators.swift in Sources */,
 				CE8937C2197071CC00376258 /* Parser.swift in Sources */,
@@ -231,6 +236,7 @@
 				CE8937C3197071CC00376258 /* Parser.swift in Sources */,
 				CE8937BF197071CC00376258 /* Mapper.swift in Sources */,
 				CE56C3211970618900FD0EDA /* SwiftMapperTests.swift in Sources */,
+				CE8937C619707A8B00376258 /* Validators.swift in Sources */,
 				CE8937C1197071CC00376258 /* Operators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

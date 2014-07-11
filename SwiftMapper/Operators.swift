@@ -29,14 +29,34 @@ func =><T> (left: (Mapper<T>, String), inout right: String?) -> () {
 func =><T> (left: (Mapper<T>, String), inout right: Int) -> () {
     return right ! { (inout b: Int) in
         if let value: AnyObject = left.0.valueFor(left.1) {
-            b = value as Int
+            var passedValidation = true
+            for validation in left.0.validations[left.1]! {
+                passedValidation = validation.validate(value as Int) && passedValidation
+            }
+            if passedValidation {
+                b = value as Int
+            } else {
+                b = -1
+            }
         }
     }
 }
 
 func =><T> (left: (Mapper<T>, String), inout right: Int?) -> () {
     return right ! { (inout b: Int?) in
-            b = left.0.valueFor(left.1) as Int?
+        if let value: AnyObject = left.0.valueFor(left.1) {
+            var passedValidation = true
+            for validation in left.0.validations[left.1]! {
+                passedValidation = (validation as IntValidator).validate(value as Int) && passedValidation
+            }
+            if passedValidation {
+                b = left.0.valueFor(left.1) as Int?
+            } else {
+                b = nil
+            }
+        } else {
+            b = nil
+        }
     }
 }
 
