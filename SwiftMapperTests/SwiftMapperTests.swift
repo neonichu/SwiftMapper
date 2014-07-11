@@ -8,48 +8,64 @@
 
 import XCTest
 
-class User
-{
+class User {
+    var username : String = ""
     var identifier : String?
-    var username : String?
-    var photo : String?
-    var age : Int?
-    var smoker : Bool?
+    var photo : String = ""
+    var age : Int = 0
+    var smoker : Bool = false
     var arr: [AnyObject]?
     var dict: [String:AnyObject]?
     
     var description : String {
-    return "User \(username) (id:\(identifier)) aged \(age) photo \"\(photo)\"" + (smoker ? " smoking" : "")
+    return "User \(username) (id:\(identifier)) aged \(age) photo \"\(photo)\"" + (smoker ? " smoking" : "") + "arr: \(arr), dict: \(dict)"
     }
 }
 
 class SwiftMapperTests: XCTestCase {
-
-    var descriptor : SwiftMapperDescriptor<User>!
-
+    
+    var mapper : Mapper<User>!
+    
     override func setUp() {
         super.setUp()
-        descriptor = SwiftMapperDescriptor<User>()
+        mapper = Mapper<User>()
         
-        descriptor["username"] = { $0.username = $1 as? String }
-        descriptor["identifier"] = { $0.identifier = $1 as? String }
-        descriptor["photo"] = { $0.photo = $1 as? String }
-        descriptor["age"] = { $0.age = $1 as? Int }
-        descriptor["smoker"] = { $0.smoker = $1 as? Bool }
-        descriptor["arr"] = { $0.arr = $1 as? [String] }
-        descriptor["dict"] = { $0.dict = $1 as? [String:String] }
+        mapper.map({ (field, object) in
+            field["username"] => object.username
+            field["identifier"] => object.identifier
+            field["photo"] => object.photo
+            field["age"] => object.age
+            field["smoker"] => object.smoker
+            field["arr"] => object.arr
+            field["dict"] => object.dict
+        })
+        
     }
     
     func test() {
-        let userJSONString = "{\"username\":\"John Doe\",\"identifier\":\"user8723\",\"photo\":\"http://imgur.com/photo1.png\",\"age\":27,\"smoker\":true}"
+        let testUsername = "John Doe"
+        let testIdentifier = "user8723"
+        let testPhoto = "http://imgur.com/photo1.png"
+        let testAge = 27
+        let testSmoker = true
+        let testArray = [ "bla", true, 42 ]
+        let testDirectory = [
+            "key1" : "value1",
+            "key2" : false,
+            "key3" : 142
+        ]
         
-        let parsedUser = descriptor.parse(userJSONString, to: User())
+        let userJSONString = "{\"username\":\"\(testUsername)\",\"identifier\":\"\(testIdentifier)\",\"photo\":\"\(testPhoto)\",\"age\":\(testAge),\"smoker\":\(testSmoker), \"arr\":[ \"bla\", true, 42 ], \"dict\":{ \"key1\" : \"value1\", \"key2\" : false, \"key3\" : 142 }}"
+        let parsedUser = mapper.parse(userJSONString, to: User())
         
-        XCTAssertEqual("John Doe", parsedUser.username as String, "Username should be the same")
-        XCTAssertEqual("user8723", parsedUser.identifier as String, "Identifier should be the same")
-        XCTAssertEqual("http://imgur.com/photo1.png", parsedUser.photo as String, "photo URL should be the same")
-        XCTAssertEqual(27, parsedUser.age!, "Age should be the same")
-        XCTAssertEqual(true, parsedUser.smoker as Bool, "Should be smoking (but it is unhealthy)")
-        XCTAssertEqual("User John Doe (id:user8723) aged 27 photo \"http://imgur.com/photo1.png\" smoking", parsedUser.description, "Description should be correct")
+        println(parsedUser.description)
+        
+        XCTAssertEqualObjects(testUsername, parsedUser.username, "Username should be the same")
+        XCTAssertEqualObjects(testIdentifier, parsedUser.identifier, "Identifier should be the same")
+        XCTAssertEqualObjects(testPhoto, parsedUser.photo, "photo URL should be the same")
+        XCTAssertEqualObjects(testAge, parsedUser.age, "Age should be the same")
+        XCTAssertEqualObjects(testSmoker, parsedUser.smoker, "Should be smoking (but it is unhealthy)")
+        XCTAssertEqualObjects(testArray, parsedUser.arr, "Array should be the same")
+        XCTAssertEqualObjects(testDirectory, parsedUser.dict, "Dictionary should be the same")
     }
 }
