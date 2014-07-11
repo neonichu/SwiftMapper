@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SwiftMapper"
-  s.version      = "0.1"
+  s.version      = "0.2"
   s.summary      = "JSON mapper written in Swift"
 
   s.description  = <<-DESC
@@ -48,7 +48,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
   
-  s.authors             = { "Kamil Borzym" => "", "Maciej Kozieł" => "", "Łukasz Kuczborski" => "", "Antonio Bello" => "" }
+  s.authors             = { "Kamil Borzym" => "", "Maciej Kozieł" => "", "Łukasz Kuczborski" => "", "Antonio Bello" => "", "Krzysztof Siejkowski" => "" }
   # Or just: s.author    = "Kamil Borzym"
   # s.authors            = { "Kamil Borzym" => "" }
   # s.social_media_url   = "http://twitter.com/Kamil Borzym"
@@ -84,7 +84,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "SwiftMapper/SwiftMapper.swift"
+  s.source_files  = "SwiftMapper/*.swift"
 
   # s.public_header_files = "Classes/**/*.h"
 

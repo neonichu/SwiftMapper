@@ -1,14 +1,18 @@
 SwiftMapper
 ===============
 
-JSON mapper written in Swift during [Swift Crunch 2014](http://swiftcrunch.com/) in Cracow on July 5th & 6th 2014 just for fun!
+First vesion of JSON mapper was written in Swift during [Swift Crunch 2014](http://swiftcrunch.com/) in Cracow on July 5th & 6th 2014 - just for fun!
+
+Then we decided that there is nothing wrong with having fun after the hackathon as well.
 
 Authors
 -------
 [![Maciej Kozieł](https://s3.amazonaws.com/uploads.hipchat.com/photos/998094/PilxzEaCYJ5IEZj_125.jpg)](https://www.linkedin.com/in/mkoziel)
 [![Kamil Borzym](https://s3.amazonaws.com/uploads.hipchat.com/photos/998120/KCOvRimHcvnFK1n_125.jpg)](https://github.com/kam800)
-[![Łukasz Kuczborski](https://s3.amazonaws.com/uploads.hipchat.com/photos/998161/uyRN9GDPl7eUEss_125.jpg)](https://twitter.com/lkuczborski)
-[![Antonio Bello](https://s3.amazonaws.com/uploads.hipchat.com/photos/998123/NNJdv0LKldkEU60_125.jpg)](https://twitter.com/ant_bello)
+[![Antonio Bello](https://s3.amazonaws.com/uploads.hipchat.com/photos/998161/uyRN9GDPl7eUEss_125.jpg)](https://twitter.com/ant_bello)
+[![Łukasz Kuczborski](https://s3.amazonaws.com/uploads.hipchat.com/photos/998123/NNJdv0LKldkEU60_125.jpg)](https://twitter.com/lkuczborski)
+[![Krzysztof Siejkowski](http://swiftcrunch.com/attendees/krzysztof_siejkowski.jpg)](https://twitter.com/_siejkowski)
+
 
 Sample Usage
 ------------
@@ -22,6 +26,8 @@ class User
     var photo : String?
     var age : Int?
     var smoker : Bool?
+    var arr : []?
+    var dict : [:]?
 }
 ```
 
@@ -32,39 +38,46 @@ Your JSON string:
     "identifier" : "user8723",
     "photo" : "http://imgur.com/photo1.png",
     "age" : 27,
-    "smoker" : true
+    "smoker" : true,
+    "arr" : [ "bla", false, 42],
+    "dict" : { "key1" : "value1", "key2" : 0, "key3" : 142 }
 }
 ```
 
-You need to create entity mapping descriptor in format
+You need to create entity mapper in format
 ```
-descriptor["jsonAttribute"] = { $0.property = $1.asFormat }
+mapper.map { (field, object) in
+    field["jsonAttribute"] => object.property
+}
 ```
 
 Descriptor mapping for User entity
 ```swift
-let descriptor = SwiftMapperDescriptor<User>()
+let mapper = Mapper<User>()
         
-descriptor["username"] = { $0.username = $1.asString }
-descriptor["identifier"] = { $0.identifier = $1.asString }
-descriptor["photo"] = { $0.photo = $1.asString }
-descriptor["age"] = { $0.age = $1.asInt }
-descriptor["smoker"] = { $0.smoker = $1.asBool }
+        mapper.map({ (field, object) in
+            field["username"] => object.username
+            field["identifier"] => object.identifier
+            field["photo"] => object.photo
+            field["age"] => object.age
+            field["smoker"] => object.smoker
+            field["arr"] => object.arr
+            field["dict"] => object.dict
+        })
 ```
 
 And now we invoke magic :)
 ```
-let parsedUser = descriptor.parse(jsonString, User())
+let parsedUser = mapper.parse(userJSONString, to: User())
 ```
 
 What do we support?
 -------------------
 * parsing objects
-* string, integer and boolean json values
+* string, integer, boolean, arrays and dictionaries json values
 
 What is missing?
 ----------------
-* arrays, dictionaries
 * nested types
 * error checking
 * validation
