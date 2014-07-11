@@ -11,7 +11,7 @@ Authors
 [![Kamil Borzym](https://s3.amazonaws.com/uploads.hipchat.com/photos/998120/KCOvRimHcvnFK1n_125.jpg)](https://github.com/kam800)
 [![Antonio Bello](https://s3.amazonaws.com/uploads.hipchat.com/photos/998161/uyRN9GDPl7eUEss_125.jpg)](https://twitter.com/ant_bello)
 [![Łukasz Kuczborski](https://s3.amazonaws.com/uploads.hipchat.com/photos/998123/NNJdv0LKldkEU60_125.jpg)](https://twitter.com/lkuczborski)
-[![Krzysztof Siejkowski](http://swiftcrunch.com/attendees/krzysztof_siejkowski.jpg)](https://twitter.com/_siejkowski)
+[![Krzysztof Siejkowski](https://s3.amazonaws.com/uploads.hipchat.com/photos/998121/7nrliimkJor63RB_125.jpg)](https://twitter.com/_siejkowski)
 
 
 Sample Usage
