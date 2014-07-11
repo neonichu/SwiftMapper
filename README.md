@@ -55,20 +55,20 @@ Descriptor mapping for User entity
 ```swift
 let mapper = Mapper<User>()
         
-        mapper.map({ (field, object) in
-            field["username"] => object.username
-            field["identifier"] => object.identifier
-            field["photo"] => object.photo
-            field["age"] => object.age
-            field["smoker"] => object.smoker
-            field["arr"] => object.arr
-            field["dict"] => object.dict
-        })
+mapper.map({ (field, object) in
+    field["username"] => object.username
+    field["identifier"] => object.identifier
+    field["photo"] => object.photo
+    field["age"] => object.age
+    field["smoker"] => object.smoker
+    field["arr"] => object.arr
+    field["dict"] => object.dict
+})
 ```
 
 And now we invoke magic :)
 ```
-let parsedUser = mapper.parse(userJSONString, to: User())
+let parsedUser = mapper.parse(jsonString, to: User())
 ```
 
 What do we support?
