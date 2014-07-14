@@ -11,9 +11,9 @@ import Foundation
 class Mapper<T> {
     
     var mappings: [(Mapper, T) -> ()] = []
-    var validations: [String:[Validator]] = [:]
+    var validations: [String:[MapperValidator]] = [:]
     var json: [String:AnyObject] = [:]
-    var tmpVal: [Validator] = []
+    var tmpVal: [MapperValidator] = []
     
     subscript(index: String) -> (Mapper, String) {
         get {
@@ -34,11 +34,11 @@ class Mapper<T> {
         }
     }
     
-    func parse(json: String, to object: T) -> (T) {
+    func parse(json: String, to object: T) -> T {
         return parse(asDictionary(json), to: object)
     }
     
-    func parse(json: [String:AnyObject], to object: T) -> (T) {
+    func parse(json: [String:AnyObject], to object: T) -> T {
         self.json = json
         for map in mappings {
             map(self, object)
@@ -46,18 +46,13 @@ class Mapper<T> {
         return object
     }
     
-    func valueFor(key: String) -> (AnyObject?) {
-        return json[key]
+    func valueFor<N>(key: String) -> N? {
+        return (json[key] as? N)
     }
     
-    func min(min: Int) -> Mapper {
-        tmpVal.append(MinIntValidator(min: min))
+    func validator(validator: MapperValidator) -> Mapper {
+        tmpVal.append(validator)
         return self
     }
-    
-    func max(max: Int) -> Mapper {
-        tmpVal.append(MaxIntValidator(max: max))
-        return self
-    }
-    
+        
 }

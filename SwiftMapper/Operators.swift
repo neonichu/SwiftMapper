@@ -8,89 +8,47 @@
 
 import Foundation
 
-operator infix !%!%!%!%!%!%!%! {}
-func !%!%!%!%!%!%!%!<N> (inout a: N, b: (inout N) -> ()) -> () { b(&a) }
-
 operator infix => {}
+
+func =><T> (left: (Mapper<T>, String), inout right: Bool) -> () {
+    return MappingExecutor<Bool, T, T>.nonOptional(left, &right)
+}
+
+
+func =><T> (left: (Mapper<T>, String), inout right: Bool?) -> () {
+    return MappingExecutor<Bool, T, T>.optional(left, &right)
+}
+
 func =><T> (left: (Mapper<T>, String), inout right: String) -> () {
-    return right !%!%!%!%!%!%!%! { (inout b: String) in
-        if let value: AnyObject = left.0.valueFor(left.1) {
-            b = value as String
-        }
-    }
+    println("zero: \(right)")
+    return MappingExecutor<String, T, T>.nonOptional(left, &right)
 }
 
 func =><T> (left: (Mapper<T>, String), inout right: String?) -> () {
-    return right !%!%!%!%!%!%!%! { (inout b: String?) in
-            b = left.0.valueFor(left.1) as String?
-    }
+    return MappingExecutor<String, T, T>.optional(left, &right)
 }
 
 func =><T> (left: (Mapper<T>, String), inout right: Int) -> () {
-    return right !%!%!%!%!%!%!%! { (inout b: Int) in
-        if let value: AnyObject = left.0.valueFor(left.1) {
-            for validation in left.0.validations[left.1]! {
-                if !(validation as IntValidator).validate(value as Int) {
-                    return
-                }
-            }
-            b = value as Int
-        }
-    }
+    return MappingExecutor<Int, T, T>.nonOptional(left, &right)
 }
 
 func =><T> (left: (Mapper<T>, String), inout right: Int?) -> () {
-    return right !%!%!%!%!%!%!%! { (inout b: Int?) in
-        b = nil
-        if let value: AnyObject = left.0.valueFor(left.1) {
-            for validation in left.0.validations[left.1]! {
-                if !(validation as IntValidator).validate(value as Int) {
-                    return
-                }
-            }
-            b = left.0.valueFor(left.1) as Int?
-        }
-    }
+        return MappingExecutor<Int, T, T>.optional(left, &right)
 }
 
-func =><T> (left: (Mapper<T>, String), inout right: Bool) -> () {
-    return right !%!%!%!%!%!%!%! { (inout b: Bool) in
-        if let value: AnyObject = left.0.valueFor(left.1) {
-            b = value as Bool
-        }
-    }
+func =><T, N> (left: (Mapper<T>, String), inout right: Array<N>) -> () {
+    return MappingExecutor<Array<N>, T, N>.nonOptional(left, &right)
 }
 
-func =><T> (left: (Mapper<T>, String), inout right: Bool?) -> () {
-    return right !%!%!%!%!%!%!%! { (inout b: Bool?) in
-            b = left.0.valueFor(left.1) as Bool?
-    }
-}
-
-func =><T> (left: (Mapper<T>, String), inout right: Array<AnyObject>) -> () {
-    return right !%!%!%!%!%!%!%! { (inout b: Array) in
-        if let value: AnyObject = left.0.valueFor(left.1) {
-            b = value as Array
-        }
-    }
-}
-
-func =><T> (left: (Mapper<T>, String), inout right: Array<AnyObject>?) -> () {
-    return right !%!%!%!%!%!%!%! { (inout b: Array<AnyObject>?) in
-        b = left.0.valueFor(left.1) as Array?
-    }
+func =><T, N> (left: (Mapper<T>, String), inout right: Array<N>?) -> () {
+    return MappingExecutor<Array<N>, T, N>.optional(left, &right)
 }
 
 func =><T, N> (left: (Mapper<T>, String), inout right: Dictionary<String, N>) -> () {
-    return right !%!%!%!%!%!%!%! { (inout b: Dictionary) in
-        if let value: AnyObject = left.0.valueFor(left.1) {
-            b = value as Dictionary
-        }
-    }
+    return MappingExecutor<Dictionary<String, N>, T, N>.nonOptional(left, &right)
 }
 
 func =><T, N> (left: (Mapper<T>, String), inout right: Dictionary<String, N>?) -> () {
-    return right !%!%!%!%!%!%!%! { (inout b: Dictionary<String, N>?) in
-        b = left.0.valueFor(left.1) as Dictionary?
-    }
+    return MappingExecutor<Dictionary<String, N>, T, N>.optional(left, &right)
 }
+

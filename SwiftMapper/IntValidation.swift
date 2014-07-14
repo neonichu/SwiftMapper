@@ -1,20 +1,26 @@
 //
-//  Validators.swift
+//  IntValidation.swift
 //  SwiftMapper
 //
-//  Created by krzysztofsiejkowski on 11/07/14.
+//  Created by krzysztofsiejkowski on 13/07/14.
 //  Copyright (c) 2014 Swiftcrunch. All rights reserved.
 //
 
 import Foundation
 
-class Validator {
-    func validate(value: AnyObject) -> Bool {
-        return false
+extension Mapper {
+    
+    func min(min: Int) -> Mapper {
+        return validator(MinIntValidator(min: min))
     }
+    
+    func max(max: Int) -> Mapper {
+        return validator(MaxIntValidator(max: max))
+    }
+    
 }
 
-class IntValidator : Validator {
+class IntValidator : MapperValidator {
     init() {}
     func validate(value: Int) -> Bool { return false }
 }

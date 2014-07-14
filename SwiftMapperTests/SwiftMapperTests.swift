@@ -11,14 +11,17 @@ import XCTest
 class User {
     var username : String = ""
     var identifier : String?
-    var photo : String = ""
+    var photoCount : Int = 0
     var age : Int?
-    var smoker : Bool = false
-    var arr: [AnyObject]?
-    var dict: [String:AnyObject]?
+    var drinker : Bool = false
+    var smoker : Bool?
+    var arr: [AnyObject] = []
+    var arrOptional: [AnyObject]?
+    var dict: [String:AnyObject] = [:]
+    var dictOptional: [String:AnyObject]?
     
     var description : String {
-    return "User \(username) (id:\(identifier)) aged \(age) photo \"\(photo)\"" + (smoker ? " smoking" : "") + "arr: \(arr), dict: \(dict)"
+    return "username: \(username) \nid:\(identifier) \naged: \(age) \nphotoCount: \(photoCount) \ndrinker: \(drinker) \nsmoker: \(smoker) \narr: \(arr) \narrOptional: \(arrOptional) \ndict: \(dict) \ndictOptional: \(dictOptional)"
     }
 }
 
@@ -29,18 +32,22 @@ class SwiftMapperTests: XCTestCase {
         mapper.map { (field, object) in
             field["username"] => object.username
             field["identifier"] => object.identifier
-            field["photo"] => object.photo
+            field["photoCount"] => object.photoCount
             field["age"] => object.age
+            field["drinker"] => object.drinker
             field["smoker"] => object.smoker
             field["arr"] => object.arr
+            field["arrOpt"] => object.arrOptional
             field["dict"] => object.dict
+            field["dictOpt"] => object.dictOptional
         }
         
         let testUsername = "John Doe"
         let testIdentifier = "user8723"
-        let testPhoto = "http://imgur.com/photo1.png"
+        let testPhoto = 13
         let testAge = 27
-        let testSmoker = true
+        let testDrinker = true
+        let testSmoker = false
         let testArray = [ "bla", true, 42 ]
         let testDirectory = [
             "key1" : "value1",
@@ -48,18 +55,21 @@ class SwiftMapperTests: XCTestCase {
             "key3" : 142
         ]
         
-        let userJSONString = "{\"username\":\"\(testUsername)\",\"identifier\":\"\(testIdentifier)\",\"photo\":\"\(testPhoto)\",\"age\":\(testAge),\"smoker\":\(testSmoker), \"arr\":[ \"bla\", true, 42 ], \"dict\":{ \"key1\" : \"value1\", \"key2\" : false, \"key3\" : 142 }}"
+        let userJSONString = "{\"username\":\"\(testUsername)\",\"identifier\":\"\(testIdentifier)\",\"photoCount\":\(testPhoto),\"age\":\(testAge),\"drinker\":\(testDrinker),\"smoker\":\(testSmoker), \"arr\":[ \"bla\", true, 42 ], \"dict\":{ \"key1\" : \"value1\", \"key2\" : false, \"key3\" : 142 }, \"arrOpt\":[ \"bla\", true, 42 ], \"dictOpt\":{ \"key1\" : \"value1\", \"key2\" : false, \"key3\" : 142 }}"
         let parsedUser = mapper.parse(userJSONString, to: User())
         
         println(parsedUser.description)
         
         XCTAssertEqualObjects(testUsername, parsedUser.username, "Username should be the same")
         XCTAssertEqualObjects(testIdentifier, parsedUser.identifier, "Identifier should be the same")
-        XCTAssertEqualObjects(testPhoto, parsedUser.photo, "photo URL should be the same")
+        XCTAssertEqualObjects(testPhoto, parsedUser.photoCount, "photo count should be the same")
         XCTAssertEqualObjects(testAge, parsedUser.age, "Age should be the same")
-        XCTAssertEqualObjects(testSmoker, parsedUser.smoker, "Should be smoking (but it is unhealthy)")
+        XCTAssertEqualObjects(testDrinker, parsedUser.drinker, "Should be drinking")
+        XCTAssertEqualObjects(testSmoker, parsedUser.smoker, "Should be smoking")
         XCTAssertEqualObjects(testArray, parsedUser.arr, "Array should be the same")
         XCTAssertEqualObjects(testDirectory, parsedUser.dict, "Dictionary should be the same")
+        XCTAssertEqualObjects(testArray, parsedUser.arrOptional, "Array should be the same")
+        XCTAssertEqualObjects(testDirectory, parsedUser.dictOptional, "Dictionary should be the same")
     }
     
     func testIntValidation() {
@@ -81,7 +91,7 @@ class SwiftMapperTests: XCTestCase {
         XCTAssertNil(parsedUserFailing.age, "Age should not pass validation")
         
         let parsedUserPassing = mapper.parse(userJSONStringPassing, to: User())
-        XCTAssertEqualObjects(testAgePassing, parsedUserPassing.age, "Age should validation")
+        XCTAssertEqualObjects(testAgePassing, parsedUserPassing.age, "Age should pass validation")
 
         let parsedUserAlsoFailing = mapper.parse(userJSONStringAlsoFailing, to: User())
         XCTAssertNil(parsedUserAlsoFailing.age, "Age should not pass validation")

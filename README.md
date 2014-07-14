@@ -63,6 +63,7 @@ mapper.map { (field, object) in
     field["smoker"] => object.smoker
     field["arr"] => object.arr
     field["dict"] => object.dict
+    field.with(accountMapper)["account"] => object.account 
 }
 ```
 
