@@ -76,7 +76,7 @@ class SwiftMapperTests: XCTestCase {
         
         let mapper = Mapper<User>()
         mapper.map { (field, object) in
-            field.longer(11)["identifier"] => object.identifier
+            field.longer(10)["identifier"] => object.identifier
             field.min(30).max(40)["age"] => object.age
         }
         

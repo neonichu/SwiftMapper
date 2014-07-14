@@ -17,5 +17,5 @@ extension Mapper {
 class LengthStringValidator : MapperValidator {
     let length: Int
     init(length: Int) { self.length = length }
-    func validate(value: AnyObject) -> Bool { return (countElements(value as String) >= length) }
+    func validate(value: AnyObject) -> Bool { return (countElements(value as String) > length) }
 }
