@@ -76,6 +76,7 @@ class SwiftMapperTests: XCTestCase {
         
         let mapper = Mapper<User>()
         mapper.map { (field, object) in
+            field.longer(11)["identifier"] => object.identifier
             field.min(30).max(40)["age"] => object.age
         }
         
@@ -83,9 +84,12 @@ class SwiftMapperTests: XCTestCase {
         let testAgePassing = 30
         let testAgeAlsoFailing = 42
         
-        let userJSONStringFailing = "{\"age\":\(testAgeFailing)}"
+        let userJSONStringFailing = "{\"age\":\(testAgeFailing), \"identifier\":\"1234567890\"}"
         let userJSONStringPassing = "{\"age\":\(testAgePassing)}"
         let userJSONStringAlsoFailing = "{\"age\":\(testAgeAlsoFailing)}"
+        
+        let parsedStringFailing = mapper.parse(userJSONStringFailing, to: User())
+        XCTAssertNil(parsedStringFailing.identifier, "Identifier should not pass validation")
         
         let parsedUserFailing = mapper.parse(userJSONStringFailing, to: User())
         XCTAssertNil(parsedUserFailing.age, "Age should not pass validation")

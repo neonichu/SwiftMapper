@@ -22,7 +22,7 @@ class MappingExecutor<FieldType, ObjectType, CollectionType> {
         return self.inoutExecution(&right, { (inout b: FieldType) in
             if let value: AnyObject = left.0.valueFor(left.1) {
                 for validation in left.0.validations[left.1]! {
-                    if !(validation as IntValidator).validate(value as Int) {
+                    if !validation.validate(value) {
                         return
                     }
                 }
@@ -48,7 +48,7 @@ class MappingExecutor<FieldType, ObjectType, CollectionType> {
             self.optionalInoutExecution(&right, { (inout b: FieldType?) in
                 if let value: AnyObject = left.0.valueFor(left.1) {
                     for validation in left.0.validations[left.1]! {
-                        if !(validation as IntValidator).validate(value as Int) {
+                        if !validation.validate(value) {
                             return
                         }
                     }

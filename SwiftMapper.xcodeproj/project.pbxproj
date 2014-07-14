@@ -23,6 +23,8 @@
 		CE8937C91973060200376258 /* IntValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8937C71973060200376258 /* IntValidation.swift */; };
 		CE8937CB197307DC00376258 /* Behaviors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8937CA197307DC00376258 /* Behaviors.swift */; };
 		CE8937CC197307DC00376258 /* Behaviors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8937CA197307DC00376258 /* Behaviors.swift */; };
+		CE968CC91973E7E100685185 /* StringValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE968CC81973E7E100685185 /* StringValidation.swift */; };
+		CE968CCA1973E94100685185 /* StringValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE968CC81973E7E100685185 /* StringValidation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,7 @@
 		CE8937C419707A8B00376258 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		CE8937C71973060200376258 /* IntValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntValidation.swift; sourceTree = "<group>"; };
 		CE8937CA197307DC00376258 /* Behaviors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Behaviors.swift; sourceTree = "<group>"; };
+		CE968CC81973E7E100685185 /* StringValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringValidation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,7 @@
 				CE8937CA197307DC00376258 /* Behaviors.swift */,
 				CE8937C419707A8B00376258 /* Validation.swift */,
 				CE8937C71973060200376258 /* IntValidation.swift */,
+				CE968CC81973E7E100685185 /* StringValidation.swift */,
 				CE56C3111970618900FD0EDA /* Supporting Files */,
 			);
 			path = SwiftMapper;
@@ -237,6 +241,7 @@
 				CE8937C81973060200376258 /* IntValidation.swift in Sources */,
 				CE8937C519707A8B00376258 /* Validation.swift in Sources */,
 				CE7031AB1973B6700009306F /* MappingExecutor.swift in Sources */,
+				CE968CC91973E7E100685185 /* StringValidation.swift in Sources */,
 				CE8937BE197071CC00376258 /* Mapper.swift in Sources */,
 				CE8937C0197071CC00376258 /* Operators.swift in Sources */,
 				CE8937C2197071CC00376258 /* Parser.swift in Sources */,
@@ -251,6 +256,7 @@
 				CE8937C3197071CC00376258 /* Parser.swift in Sources */,
 				CE8937BF197071CC00376258 /* Mapper.swift in Sources */,
 				CE56C3211970618900FD0EDA /* SwiftMapperTests.swift in Sources */,
+				CE968CCA1973E94100685185 /* StringValidation.swift in Sources */,
 				CE7031AC1973B6700009306F /* MappingExecutor.swift in Sources */,
 				CE8937C619707A8B00376258 /* Validation.swift in Sources */,
 				CE8937C91973060200376258 /* IntValidation.swift in Sources */,

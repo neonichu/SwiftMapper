@@ -8,8 +8,6 @@
 
 import Foundation
 
-class MapperValidator {
-    func validate(value: AnyObject) -> Bool {
-        return false
-    }
+protocol MapperValidator {
+    func validate(value: AnyObject) -> Bool
 }
