@@ -20,7 +20,6 @@ func =><T> (left: (Mapper<T>, String), inout right: Bool?) -> () {
 }
 
 func =><T> (left: (Mapper<T>, String), inout right: String) -> () {
-    println("zero: \(right)")
     return MappingExecutor<String, T, T>.nonOptional(left, &right)
 }
 
@@ -33,7 +32,7 @@ func =><T> (left: (Mapper<T>, String), inout right: Int) -> () {
 }
 
 func =><T> (left: (Mapper<T>, String), inout right: Int?) -> () {
-        return MappingExecutor<Int, T, T>.optional(left, &right)
+    return MappingExecutor<Int, T, T>.optional(left, &right)
 }
 
 func =><T, N> (left: (Mapper<T>, String), inout right: Array<N>) -> () {
