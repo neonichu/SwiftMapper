@@ -63,7 +63,6 @@ mapper.map { (field, object) in
     field["smoker"] => object.smoker
     field["arr"] => object.arr
     field["dict"] => object.dict
-    field.with(accountMapper)["account"] => object.account 
 }
 ```
 
@@ -94,7 +93,7 @@ What do we support?
 -------------------
 * parsing objects
 * string, integer, boolean, arrays and dictionaries json values
-* vary limited validation
+* very limited validation
 
 What is missing?
 ----------------
