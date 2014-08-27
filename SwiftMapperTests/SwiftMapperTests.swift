@@ -60,16 +60,16 @@ class SwiftMapperTests: XCTestCase {
         
         println(parsedUser.description)
         
-        XCTAssertEqualObjects(testUsername, parsedUser.username, "Username should be the same")
-        XCTAssertEqualObjects(testIdentifier, parsedUser.identifier, "Identifier should be the same")
-        XCTAssertEqualObjects(testPhoto, parsedUser.photoCount, "photo count should be the same")
-        XCTAssertEqualObjects(testAge, parsedUser.age, "Age should be the same")
-        XCTAssertEqualObjects(testDrinker, parsedUser.drinker, "Should be drinking")
-        XCTAssertEqualObjects(testSmoker, parsedUser.smoker, "Should be smoking")
-        XCTAssertEqualObjects(testArray, parsedUser.arr, "Array should be the same")
-        XCTAssertEqualObjects(testDirectory, parsedUser.dict, "Dictionary should be the same")
-        XCTAssertEqualObjects(testArray, parsedUser.arrOptional, "Array should be the same")
-        XCTAssertEqualObjects(testDirectory, parsedUser.dictOptional, "Dictionary should be the same")
+        XCTAssertEqual(testUsername, parsedUser.username, "Username should be the same")
+        XCTAssertEqual(testIdentifier, parsedUser.identifier!, "Identifier should be the same")
+        XCTAssertEqual(testPhoto, parsedUser.photoCount, "photo count should be the same")
+        XCTAssertEqual(testAge, parsedUser.age!, "Age should be the same")
+        XCTAssertEqual(testDrinker, parsedUser.drinker, "Should be drinking")
+        XCTAssertEqual(testSmoker, parsedUser.smoker!, "Should be smoking")
+        XCTAssertEqual(testArray, parsedUser.arr, "Array should be the same")
+        XCTAssertEqual(testDirectory, parsedUser.dict, "Dictionary should be the same")
+        XCTAssertEqual(testArray, parsedUser.arrOptional!, "Array should be the same")
+        XCTAssertEqual(testDirectory, parsedUser.dictOptional!, "Dictionary should be the same")
     }
     
     func testIntValidation() {
@@ -95,7 +95,7 @@ class SwiftMapperTests: XCTestCase {
         XCTAssertNil(parsedUserFailing.age, "Age should not pass validation")
         
         let parsedUserPassing = mapper.parse(userJSONStringPassing, to: User())
-        XCTAssertEqualObjects(testAgePassing, parsedUserPassing.age, "Age should pass validation")
+        XCTAssertEqual(testAgePassing, parsedUserPassing.age!, "Age should pass validation")
 
         let parsedUserAlsoFailing = mapper.parse(userJSONStringAlsoFailing, to: User())
         XCTAssertNil(parsedUserAlsoFailing.age, "Age should not pass validation")

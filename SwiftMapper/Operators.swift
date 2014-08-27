@@ -8,7 +8,7 @@
 
 import Foundation
 
-operator infix => {}
+infix operator => {}
 
 func =><T> (left: (Mapper<T>, String), inout right: Bool) -> () {
     return MappingExecutor<Bool, T, T>.nonOptional(left, &right)

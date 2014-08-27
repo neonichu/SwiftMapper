@@ -34,9 +34,9 @@ class MappingExecutor<FieldType, ObjectType, CollectionType> {
                 case is String.Type:
                     b = (value as String) as FieldType
                 case is Array<CollectionType>.Type:
-                    b = (value as Array<CollectionType>) as FieldType
+                    b = (value as Array<AnyObject>) as FieldType
                 case is Dictionary<String, CollectionType>.Type:
-                    b = (value as Dictionary<String, CollectionType>) as FieldType
+                    b = (value as Dictionary<String, AnyObject>) as FieldType
                 default:
                     return
                 }
@@ -60,9 +60,9 @@ class MappingExecutor<FieldType, ObjectType, CollectionType> {
                     case is Int.Type:
                         b = (value as Int) as? FieldType
                     case is Array<CollectionType>.Type:
-                        b = (value as Array<CollectionType>) as? FieldType
+                        b = (value as Array<AnyObject>) as? FieldType
                     case is Dictionary<String, CollectionType>.Type:
-                        b = (value as Dictionary<String, CollectionType>) as? FieldType
+                        b = (value as Dictionary<String, AnyObject>) as? FieldType
                     default:
                         b = nil
                         return

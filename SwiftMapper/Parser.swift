@@ -9,7 +9,7 @@
 import Foundation
 
 func asDictionary(json : String) -> [String:AnyObject] {
-    let data : NSData = (json as NSString).dataUsingEncoding(NSUTF8StringEncoding)
+    let data : NSData = (json as NSString).dataUsingEncoding(NSUTF8StringEncoding)!
     var error : NSError?
     let jsonObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
     var result : [String:AnyObject] = [:]
